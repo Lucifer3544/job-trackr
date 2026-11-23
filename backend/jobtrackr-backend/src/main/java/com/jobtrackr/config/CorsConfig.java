@@ -1,3 +1,4 @@
+
 package com.jobtrackr.config;
 
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,10 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins(
+                                "http://localhost:5173",
+                                "https://job-trackr-three-liard.vercel.app"
+                        )
                         .allowedMethods(
                                 "GET",
                                 "POST",
@@ -24,7 +28,9 @@ public class CorsConfig {
                                 "DELETE",
                                 "OPTIONS"
                         )
-                        .allowedHeaders("*");
+                        .allowedHeaders("*")
+                        .allowCredentials(false)
+                        .maxAge(3600);
             }
         };
     }
